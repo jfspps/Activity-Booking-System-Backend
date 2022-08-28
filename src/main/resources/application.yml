@@ -1,0 +1,40 @@
+#Enable debug messages with SLF4j
+logging:
+  level:
+    uk.org.breakthemould: debug
+
+#Spring Boot debug mode
+debug: false
+  
+#Match default Nginx port on AWS
+server:
+  port: 5000
+
+jwt:
+  secret: 0utwjoifjj08rjwo{:{}$Â£0ein__+_fosdoi05u702fen
+  
+#Email SMTP settings
+email:
+  username: btmDevGroup@gmail.com
+  password: passBOOK21
+  from: btmDevGroup@gmail.com
+  smtp:
+    server: smtp.gmail.com
+    port: 465
+    tls:
+      enable: yes
+      required: yes
+
+# this is currently set to connect to the MySQL instance as defined in /JAR/docker-compose.yml and can be overridden externally
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/booking_system_db
+    username: booking-system-user
+    password: password_drowssap_password
+  jpa:
+    hibernate:
+      # flip this between create and validate
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: false

@@ -1,0 +1,168 @@
+#%RAML 1.0
+---
+title: BTM Activity Booking System
+baseUri: http://localhost:3000/api/v1
+version: v1
+/users:
+    description: All user entities (admin, staff, parent) on file
+    get:
+        description: Get a list of all users on file, sorted by ID (DONE)
+    /byID:
+        get:
+        description: Get user by user ID
+        queryParameters:
+            id:
+                description: Find user by database ID (DONE)
+                type: number
+                example: 2
+    /admin:
+        get:
+            description: Get a list of all ADMIN users
+        post:
+            description: Submit new admin user with username and email address (DONE)
+    /staff:
+        get:
+            description: Get a list of all STAFF users
+        post:
+            description: Submit new staff user with username and email address (DONE)
+    /parent:
+        get:
+            description: Get a list of all PARENT users
+        post:
+            description: Submit new parent user with username and email address (DONE)
+        delete:
+            description: Removes a parent's record from the database (DONE)
+    /child:
+        post:
+            description: Submit new child record(s) to the database (DONE)
+        delete:
+            description: Removes a child's record from the database (DONE)
+    /registerParent:
+        put:
+            description: Update personal details of a registering parent (DONE)
+    /otherParent:
+        put:
+            description: Update personal details of a non-registering (other) parent (DONE)
+    /activateParentsAccount:
+        post:
+            description: Activate a parent or parents account after registration (DONE)
+    /btmRep:
+        get:
+            description: Get assigned BTM representative of parent with username
+            provided (DONE)
+        put:
+            description: Update BTM representative of the parent with username
+            provided (DONE)
+    /login:
+        post:
+            description: Send username and password at login page (with JSON web
+            token auth) (DONE)
+    /toggleLock:
+        put:
+            description: Allow admin to lock/unlock other admin/staff/parent account,
+            and staff to lock/unlock a parent's account (DONE)
+    /children:
+        get:
+            description: Retrieve the details of all children of the logged in
+            parent (DONE)
+        put:
+            description: Update the details of all children of the logged in
+            parent (DONE)
+    /{username}/username:
+        get:
+            description: Find a user (with given username) (DONE)
+        put:
+            description: Update an existing user's (personal) details (DONE)
+    /resetPassword:
+        post:
+            description: Send a request to reset password (DONE)
+    /changePassword:
+        post:
+            description: Send a request to change the current password (DONE)
+/activityTemplate:
+    description: All activity templates on file
+    get:
+      description: get all templates on file, sorted by UniqueID (DONE)
+    /byUniqueID:
+         get:
+             description: get template by uniqueID
+             queryParameters:
+                 uniqueId:
+                     description: Find by activity uniqueID string field (DONE)
+                     type: string
+                     example: tennis101
+    post:
+        description: Request for new activity template (DONE)
+    /{username}/owner:
+        get:
+            description: Find by activity template owner username (DONE)
+    /{id}/database:
+        get:
+            description: Get by template database ID (DONE)
+        put:
+            description: Update template with ID (DONE)
+/activityDetail:
+    description: All activity details (template + meeting time/place) on file
+        get:
+            description: get all details on file, sorted by template uniqueID
+            followed by detail database ID (DONE)
+        put:
+            description: Update activity detail (DONE)
+        post:
+            description: Submit a new activity detail (DONE)
+    /{username}:
+        /organiserUsername:
+            get:
+                description: Find all activity details by activity organiser
+                username (DONE)
+        /parentUsername:
+            get:
+                description: Find all activity details by parent (participant)
+                username (DONE)
+        /{firstName}/{lastName}/child:
+            get:
+                description: Find all activity details by child (participant)
+                first and last name and parent username (DONE)
+    /{uniqueID}/uniqueID:
+            get:
+                description: Find all activity details by template uniqueID (DONE)
+    /participantList/{uniqueID}/{organiserUsername}:
+        get:
+            description: Get a list of participants for a given activity detail (DONE)
+            queryParameters:
+                 startDateTime:
+                     description: Start dateTime
+                     type: string
+                     example: 2021-07-10T20:10
+    /between:
+        get:
+            description: Retrieve all activity details (and their template)
+            between two given dates and times; activities ordered chronologically (DONE)
+            queryParameters:
+                 startDateTime:
+                     description: Start dateTime
+                     type: string
+                     example: 2021-07-10T20:10
+                 endDateTime:
+                     description: End dateTime
+                     type: string
+                     example: 2021-08-22T20:10
+    /withBookings:
+        get:
+            description: Retrieve all activity details and bookings between two given
+            dates and times for the family of the logged in parent (DONE)
+            queryParameters:
+                 startDateTime:
+                     description: Start dateTime
+                     type: string
+                     example: 2021-07-10T20:10
+                 endDateTime:
+                     description: End dateTime
+                     type: string
+                     example: 2021-08-22T20:10
+        put:
+            description: Update all activity details and bookings between two given
+            dates and times for the family of the logged in parent (DONE)
+    /{detailId}/database:
+        get:
+            description: Get activity detail (by database ID) (DONE)

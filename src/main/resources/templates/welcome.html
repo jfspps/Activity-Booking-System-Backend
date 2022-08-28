@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/header :: baseHead(~{::title})">
+  <title>Welcome page</title>
+</head>
+<body>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1>BTM Activity Booking System</h1>
+
+      <h3>The OpenAPI documentation</h3>
+      <p>
+        The REST API is documented by OpenAPI (formerly Swagger). With the web service running, click:
+      </p>
+      <div>
+        <a href="/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/" class="btn btn-outline-primary" target="_blank">Access OpenAPI documentation</a>
+      </div>
+      <br>
+      <p>
+        This explains what each endpoint aims to achieve and provides an example of a JSON request body expected (if applicable).
+        In most cases, there are also examples of JSON responses, though if it is not provided (JSON body is empty) then it
+        means that there are at least two return values possible.
+      </p>
+      <hr />
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>
