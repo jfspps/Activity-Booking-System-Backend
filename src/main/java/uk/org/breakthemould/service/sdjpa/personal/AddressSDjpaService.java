@@ -32,7 +32,7 @@ public class AddressSDjpaService implements AddressService {
     @Override
     public Address findAddressByAllFields(String firstLine, String secondLine, String townCity, String postcode) {
         log.debug("Searching for address by all parameters");
-        return addressRepository.findByFirstLineAndSecondLineAndTownCityAndPostCode(firstLine, secondLine, townCity, postcode).orElse(null);
+        return addressRepository.findByFirstLineAndSecondLineAndTownCityAndPostCodeIgnoreCase(firstLine, secondLine, townCity, postcode).orElse(null);
     }
 
     @Override

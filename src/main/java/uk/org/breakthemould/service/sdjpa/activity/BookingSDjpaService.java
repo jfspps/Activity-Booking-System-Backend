@@ -70,7 +70,7 @@ public class BookingSDjpaService implements BookingService {
 
     @Override
     public Booking findByBookingReference(String bookingRef) {
-        return bookingRepository.findByBookingRef(bookingRef).orElseThrow(
+        return bookingRepository.findByBookingRefIgnoreCase(bookingRef).orElseThrow(
                 () -> new NotFoundException("Booking not found with reference supplied")
         );
     }

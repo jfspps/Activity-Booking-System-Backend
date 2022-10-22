@@ -12,6 +12,10 @@ server:
 
 jwt:
   secret: 0utwjoifjj08rjwo{:{}$Â£0ein__+_fosdoi05u702fen
+
+btm:
+  login:
+    page: https://www.breakthemould.org.uk
   
 #Email SMTP settings
 email:
@@ -34,7 +38,7 @@ spring:
   jpa:
     hibernate:
       # flip this between create and validate
-      ddl-auto: validate
+      ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: false

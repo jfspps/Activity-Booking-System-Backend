@@ -10,5 +10,5 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     Set<Address> findAllByPostCodeContainingIgnoreCase(String postcode);
 
-    Optional<Address> findByFirstLineAndSecondLineAndTownCityAndPostCode(String firstLine, String secondLine, String townCity, String postcode);
+    Optional<Address> findByFirstLineAndSecondLineAndTownCityAndPostCodeIgnoreCase(String firstLine, String secondLine, String townCity, String postcode);
 }

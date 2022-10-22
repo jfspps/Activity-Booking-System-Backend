@@ -113,7 +113,7 @@ public class AccountController {
 
         String password = generatePassword();
 
-        // todo: remove this at release
+        // todo: remove these two printouts at release
         log.warn("---Please remove this from the release version-----");
         log.debug("API: New admin username: " + username + " with new password: " + password);
 
@@ -177,7 +177,7 @@ public class AccountController {
 
         String password = generatePassword();
 
-        // todo: remove this at release
+        // todo: remove these at release
         log.warn("---Please remove this from the release version-----");
         log.debug("API: New staff username: " + username + " with new password: " + password);
 
@@ -242,7 +242,7 @@ public class AccountController {
 
         String password = generatePassword();
 
-        // todo: remove this at release
+        // todo: remove these at release
         log.warn("---Please remove this from the release version-----");
         log.debug("API: New parent username: " + username + " with new password: " + password);
 

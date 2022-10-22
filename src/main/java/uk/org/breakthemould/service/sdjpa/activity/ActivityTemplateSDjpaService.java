@@ -25,7 +25,7 @@ public class ActivityTemplateSDjpaService implements ActivityTemplateService {
     @Override
     public ActivityTemplate findByUniqueID(String uniqueID) {
         log.debug("Searching for activity template by uniqueID: " + uniqueID);
-        return activityTemplateRepository.findByUniqueID(uniqueID)
+        return activityTemplateRepository.findByUniqueIDIgnoreCase(uniqueID)
                 .orElseThrow(() -> new NoResultException("Activity template with uniqueID supplied not found"));
     }
 
@@ -38,7 +38,7 @@ public class ActivityTemplateSDjpaService implements ActivityTemplateService {
     @Override
     public boolean activityTemplateWithUniqueIDExists(String uniqueID) {
         log.debug("Checking if activity template with uniqueID, " + uniqueID + ", exists");
-        return activityTemplateRepository.findByUniqueID(uniqueID).isPresent();
+        return activityTemplateRepository.findByUniqueIDIgnoreCase(uniqueID).isPresent();
     }
 
     @Override

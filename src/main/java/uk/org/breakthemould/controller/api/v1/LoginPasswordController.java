@@ -186,7 +186,7 @@ public class LoginPasswordController {
             String newPassword = RandomStringUtils.randomAlphanumeric(10);
             user.setPassword(passwordEncoder.encode(newPassword));
 
-            // todo: remove this later
+            // todo: remove these later
             log.warn("---Please remove this from the release version-----");
             log.info("API: Current username: " + user.getUsername() + " with new reset password: " + newPassword);
 

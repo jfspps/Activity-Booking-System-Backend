@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    Optional<Booking> findByBookingRef(String bookingRef);
+    Optional<Booking> findByBookingRefIgnoreCase(String bookingRef);
 
     Set<Booking> findByParentsTakingPartContains(ParentUser parentUser);
 

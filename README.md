@@ -9,25 +9,7 @@ Current localhost port: 5000 (see [application.yml](./src/main/resources/applica
 The basic concepts and workflow involved is outlined in [here](/docs/Getting%20Started.pdf). There are other useful
 documents in the same directory that outline the workflow involved.
 
-## Compiled JAR
-
-The precompiled JAR is [here](./JAR). At the console enter
-
-```bash
-java -jar breakthemould-x.y.z.jar
-```
-
-with the matching versions of x, y and z.
-
 ## SMTP emails
-
-The above command will run the backend with the email defaults applied. Optionally, the email accounts/usernames can be 
-overridden (currently tested via Gmail) by passing parameters at the command prompt when running the JAR file. For gmail users,
-the following will allow one to send emails from their own account:
-
-```bash
-java -jar breakthemould-x.y.z.jar --email.username="yourUserName@gmail.com" --email.password="yourPassword"
-```
 
 Please see [application.yml](/src/main/resources/application.yml) for the current email defaults and [EmailSettings](/src/main/java/uk/org/breakthemould/config/EmailSettings.java) 
 for more details on what else can be overridden.

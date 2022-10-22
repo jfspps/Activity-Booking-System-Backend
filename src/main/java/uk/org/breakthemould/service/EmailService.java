@@ -315,11 +315,10 @@ public class EmailService {
         message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(CC_EMAIL, false));
         message.setSubject(EMAIL_SUBJECT);
 
-        // todo: set the booking system domain
         message.setText(
                 "Hello, " +
                         "\n\nA new account has been prepared for you. For security reasons, your username and password " +
-                        "are being sent in separate emails. Please go to BlaBlaBla to enter your details. " +
+                        "are being sent in separate emails. Please go to " + emailSettings.getLogin_page() + " to enter your details. " +
                         "\n\nYour new BTM activity booking account password is: " + password +
                         "\n\nThe BTM support team");
         message.setSentDate(new Date());
@@ -335,11 +334,10 @@ public class EmailService {
         message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(CC_EMAIL, false));
         message.setSubject(EMAIL_SUBJECT);
 
-        // todo: set the booking system domain
         message.setText(
                 "Hello, " +
                         "\n\nA new account has been prepared for you. For security reasons, your username and password " +
-                        "are being sent in separate emails. Please go to BlaBlaBla to enter your details. " +
+                        "are being sent in separate emails. Please go to " + emailSettings.getLogin_page() + " to enter your details. " +
                         "\n\nYour new BTM activity booking account username is: " + username +
                         "\n\nThe BTM support team");
         message.setSentDate(new Date());

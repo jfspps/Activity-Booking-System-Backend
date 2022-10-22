@@ -34,6 +34,9 @@ public class EmailSettings {
     @Value("${email.smtp.tls.required}")
     private String email_smtp_tls_required;
 
+    @Value("${btm.login.page}")
+    private String login_page;
+
     public String getUsername() {
         return username;
     }
@@ -88,5 +91,13 @@ public class EmailSettings {
 
     public void setEmail_smtp_tls_required(String email_smtp_tls_required) {
         this.email_smtp_tls_required = email_smtp_tls_required;
+    }
+
+    public String getLogin_page() {
+        return login_page;
+    }
+
+    public void setLogin_page(String login_page) {
+        this.login_page = login_page;
     }
 }

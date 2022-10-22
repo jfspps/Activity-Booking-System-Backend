@@ -90,7 +90,7 @@ public class ActivityDetailSDjpaService implements ActivityDetailService {
     @Override
     public ActivityDetail findByUniqueIDAndMeetingDateTimeAndOrganiser(String uniqueID, Date startDateTime, User organiser) {
         log.debug("Searching for activity detail by activity template unique ID: " + uniqueID + ", start date and time: " + startDateTime + " and organiser: " + organiser.getUsername());
-        return activityDetailRepository.findActivityDetailByActivityTemplate_UniqueIDAndMeetingDateAndOrganiser(uniqueID, startDateTime, organiser).orElseThrow(
+        return activityDetailRepository.findActivityDetailByActivityTemplate_UniqueIDAndMeetingDateAndOrganiserIgnoreCase(uniqueID, startDateTime, organiser).orElseThrow(
                 () -> new NotFoundException("Could not find activity detail with parameters given")
         );
     }

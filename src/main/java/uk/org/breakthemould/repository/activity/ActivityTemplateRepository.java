@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface ActivityTemplateRepository extends JpaRepository<ActivityTemplate, Long> {
 
-    Optional<ActivityTemplate> findByUniqueID(String uniqueID);
+    Optional<ActivityTemplate> findByUniqueIDIgnoreCase(String uniqueID);
 
     Set<ActivityTemplate> findAllByNameContainingIgnoreCase(String name);
 

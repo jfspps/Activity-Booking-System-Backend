@@ -193,6 +193,7 @@ local.properties
 ######################
 /log/
 /target/
+/.mvn/
 
 ######################
 # Gradle
@@ -204,3 +205,6 @@ local.properties
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# JAR file inserted here to build with Dockerfile; exclude it from git
+/Docker backend dev and testing/*.jar

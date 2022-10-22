@@ -58,6 +58,7 @@ public class JpaDataLoader implements CommandLineRunner {
         log.info("Authorities on file: " + authorityService.findAll().size());
         log.info("Admin users on file: " + adminUserService.findAll().size());
         log.info("Outgoing email username (used to send notifications): " + emailSettings.getUsername());
+        log.info("Booking System login page reference: " + emailSettings.getLogin_page());
         log.info("================= The Booking System back-end has finished loading ==========================");
     }
 
