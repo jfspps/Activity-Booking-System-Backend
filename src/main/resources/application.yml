@@ -38,7 +38,7 @@ spring:
   jpa:
     hibernate:
       # flip this between create and validate
-      ddl-auto: create
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: false

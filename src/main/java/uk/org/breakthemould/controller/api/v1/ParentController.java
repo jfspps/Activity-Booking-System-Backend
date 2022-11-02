@@ -56,7 +56,7 @@ public class ParentController {
     /**
      * Submit personal details of a registering parent
      */
-    @Operation(summary = "Allows one parent to register their details for the first time. For single parents, returns \"canActivateAccount=true\". PARENT only.")
+    @Operation(summary = "Allows the registering parent to upload their details. The field \"canActivateAccount=true\" is ignored. PARENT only.")
     @PreAuthorize("hasAuthority('parent.create')")
     @PutMapping("/registerParent")
     public ResponseEntity<ParentRegisteredDTO> registeringParentDetails(@RequestBody RegisteringParentDTO registeringParentDTO)
@@ -135,7 +135,7 @@ public class ParentController {
     /**
      * Submit personal details of other non-registering parent
      */
-    @Operation(summary = "Allows the other non-registering parent to submit their details for the first time. Returns \"canActivateAccount=true\". PARENT only.")
+    @Operation(summary = "Allows the other non-registering parent to upload their details. The field \"canActivateAccount=true\" is ignored. PARENT only.")
     @PreAuthorize("hasAuthority('parent.create')")
     @PutMapping("/otherParent")
     public ResponseEntity<ParentRegisteredDTO> nonRegisteringParentDetails(@RequestBody RegisteringParentDTO nonRegisteringParentDTO)
@@ -282,7 +282,7 @@ public class ParentController {
         ParentUser regParentUser = regParent.getParentUser();
 
         // check BTM rep is assigned to registering parent
-        if (!regParent.getParentUser().getBtmRep().getUsername().equals(getUsername())) {
+        if (!regParent.getParentUser().getBtmRep().getUsername().equalsIgnoreCase(getUsername())) {
             throw new AccessDeniedException("Only the BTM rep assigned can activate this parent's account");
         }
 
@@ -303,7 +303,7 @@ public class ParentController {
             ParentUser otherParentUser = otherParent.getParentUser();
 
             // check BTM rep is assigned to other parent
-            if (!otherParentUser.getBtmRep().getUsername().equals(getUsername())) {
+            if (!otherParentUser.getBtmRep().getUsername().equalsIgnoreCase(getUsername())) {
                 throw new AccessDeniedException("Only the BTM rep assigned can activate this parent's account");
             }
             log.debug("API: BTM rep assignment for both parents is OK");
@@ -317,14 +317,14 @@ public class ParentController {
             }
 
             // check that their own email addresses on file match
-            if (!regParentUser.getEmail().equals(regParentEmail)
-                    || !otherParentUser.getEmail().equals(otherParentEmail)) {
+            if (!regParentUser.getEmail().equalsIgnoreCase(regParentEmail)
+                    || !otherParentUser.getEmail().equalsIgnoreCase(otherParentEmail)) {
                 throw new MissingPersonalDataRequiredException("Emails supplied do not match those on file");
             }
 
             // check that their partner's email on file are in line
-            if (!regParentUser.getEmail().equals(otherParentUser.getPartnerEmail())
-                    || !otherParentUser.getEmail().equals(regParentUser.getEmail())) {
+            if (!regParentUser.getEmail().equalsIgnoreCase(otherParentUser.getPartnerEmail())
+                    || !otherParentUser.getEmail().equalsIgnoreCase(regParentUser.getPartnerEmail())) {
                 throw new MissingPersonalDataRequiredException("Email of partner for one or both parents on file do not match");
             }
             log.debug("API: Email address details for both parents are OK");
@@ -332,8 +332,13 @@ public class ParentController {
             // checks done, commit changes
             regParentUser.setPartner(otherParent);
             regParentUser.setCanUploadChildDataMakeBookings(true);
+            regParentUser.getChildren().addAll(otherParentUser.getChildren());
+            log.debug("API: Added " + otherParentUser.getChildren().size() + " child record(s) to parent with username: " + regParent.getUsername());
+
             otherParentUser.setPartner(regParent);
             otherParentUser.setCanUploadChildDataMakeBookings(true);
+            otherParentUser.getChildren().addAll(regParentUser.getChildren());
+            log.debug("API: Added " + regParentUser.getChildren().size() + " child record(s) to parent with username: " + otherParent.getUsername());
 
             parentUserService.save(regParentUser);
             parentUserService.save(otherParentUser);

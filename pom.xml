@@ -11,7 +11,7 @@
 
     <groupId>uk.org.breakthemould</groupId>
     <artifactId>breakthemould</artifactId>
-    <version>1.3.19</version>
+    <version>1.3.20</version>
     <name>BookingSystem</name>
     <description>Activity booking system</description>
 

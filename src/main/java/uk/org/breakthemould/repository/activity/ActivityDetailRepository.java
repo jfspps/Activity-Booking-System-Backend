@@ -26,5 +26,5 @@ public interface ActivityDetailRepository extends JpaRepository<ActivityDetail, 
 
     Set<ActivityDetail> findActivityDetailByMeetingDateBetweenOrderByMeetingDateTime(Date start, Date end);
 
-    Optional<ActivityDetail> findActivityDetailByActivityTemplate_UniqueIDAndMeetingDateAndOrganiserIgnoreCase(String uniqueID, Date startDateTime, User organiser);
+    Optional<ActivityDetail> findActivityDetailByActivityTemplate_UniqueIDAndMeetingDateAndOrganiser(String uniqueID, Date startDateTime, User organiser);
 }

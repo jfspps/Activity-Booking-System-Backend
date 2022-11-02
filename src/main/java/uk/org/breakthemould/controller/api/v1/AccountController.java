@@ -364,7 +364,7 @@ public class AccountController {
      * Update a user's details (exc. password) by username
      */
     @Operation(summary = "Update a user's personal details (exc. password) by username. Route is restricted to a PARENT with the same" +
-            " username given or any STAFF/ADMIN.")
+            " username given or any STAFF/ADMIN. Virtually all fields under \"account\" are ignored.")
     @PutMapping("/{username}/username")
     @PreAuthorize("hasAnyAuthority('admin.update', 'staff.update', 'parent.update')")
     public ResponseEntity<?> updateUserByUsername(@PathVariable("username") String username,
